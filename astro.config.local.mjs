@@ -4,11 +4,10 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
+// Lokale Entwicklungskonfiguration (ohne GitHub Pages base path)
 export default defineConfig({
-  // GitHub Pages deployment configuration
-  // WICHTIG: Passen Sie diese Werte an Ihr Repository an!
-  site: 'https://your-username.github.io',
-  base: '/your-repository-name',
+  // Lokale Entwicklung
+  site: 'http://localhost:4321',
   
   vite: {
     plugins: [tailwindcss()]
@@ -21,4 +20,4 @@ export default defineConfig({
   build: {
     assets: 'assets'
   }
-});
+}); 

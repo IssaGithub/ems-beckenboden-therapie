@@ -3,12 +3,18 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --config astro.config.local.mjs",
+    "start": "astro dev --config astro.config.local.mjs",
     "build": "astro build",
+    "build:github": "astro build --config astro.config.mjs",
     "preview": "astro preview",
+    "preview:github": "astro preview --config astro.config.mjs",
+    "deploy:github": "bash deploy-github.sh",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.11.1"
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.11.1",
+    "tailwindcss": "^4.1.11"
   }
 }
