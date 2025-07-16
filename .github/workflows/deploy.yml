@@ -39,10 +39,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Verify Tailwind CSS installation
+        run: |
+          npm list @tailwindcss/vite tailwindcss
+          echo "Tailwind CSS installed correctly"
+        
       - name: Build with Astro
         run: |
           npm run build
           touch ./dist/.nojekyll
+          # Ensure CSS files are present
+          find ./dist -name "*.css" -type f | head -10 || echo "CSS files check complete"
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

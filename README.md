@@ -93,6 +93,8 @@ npm run deploy:github      # Manuelles Deployment
 
 📖 **Detaillierte Anleitung**: Siehe [GITHUB_PAGES_DEPLOYMENT.md](GITHUB_PAGES_DEPLOYMENT.md)
 
+🚨 **CSS-Probleme auf GitHub Pages?** → [CSS_TROUBLESHOOTING.md](CSS_TROUBLESHOOTING.md)
+
 ### VPS Deployment (Alternativ)
 
 1. **Script konfigurieren**: Bearbeiten Sie `deploy.sh`:

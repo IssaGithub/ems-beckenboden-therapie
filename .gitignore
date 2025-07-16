@@ -22,3 +22,13 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Visual Studio Code
+.vscode/
+!.vscode/extensions.json
+
+# GitHub Pages deployment backups
+*.backup
+*.bak
+astro.config.mjs.backup
+public/sitemap.xml.backup

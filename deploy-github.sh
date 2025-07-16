@@ -148,6 +148,24 @@ build_project() {
     print_step "Erstelle Production Build..."
     if npm run build; then
         print_success "Build erfolgreich erstellt"
+        
+        # Überprüfe CSS-Dateien
+        print_step "Überprüfe CSS-Dateien..."
+        if find ./dist -name "*.css" -type f | head -1 | grep -q ".css"; then
+            print_success "CSS-Dateien gefunden"
+            print_info "CSS-Dateien:"
+            find ./dist -name "*.css" -type f | head -5
+        else
+            print_error "Keine CSS-Dateien gefunden! Mögliche Probleme:"
+            echo "  - Tailwind CSS nicht korrekt konfiguriert"
+            echo "  - Build-Prozess fehlgeschlagen"
+            echo "  - Astro-Konfiguration fehlerhaft"
+            exit 1
+        fi
+        
+        # Erstelle .nojekyll Datei
+        touch ./dist/.nojekyll
+        print_success ".nojekyll Datei erstellt"
     else
         print_error "Fehler beim Erstellen des Builds"
         exit 1
