@@ -5,10 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // GitHub Pages deployment configuration
-  // WICHTIG: Passen Sie diese Werte an Ihr Repository an!
-  site: 'https://izayt.github.io',
-  base: '/Annette_Fusspflege/',
+  // GitHub Actions deployment configuration
+  site: 'https://issagithub.github.io',
+  base: '/ems-beckenboden-therapie/',
   
   vite: {
     plugins: [tailwindcss()],
