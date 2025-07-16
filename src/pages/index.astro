@@ -485,6 +485,85 @@ import Layout from '../layouts/Layout.astro';
 	</div>
 </section>
 
+<!-- Download Section für Anamnesebogen -->
+<section id="download" class="py-20 bg-white">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-16">
+			<h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Vorbereitung auf Ihre Behandlung</h2>
+			<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+				Laden Sie unseren Anamnesebogen herunter und füllen Sie ihn vor Ihrem ersten Termin aus. 
+				Das spart Zeit und ermöglicht eine optimale Behandlungsplanung.
+			</p>
+		</div>
+		<div class="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-8 lg:p-12">
+			<div class="max-w-4xl mx-auto">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+					<div>
+						<div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mb-6">
+							<svg class="w-10 h-10 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path>
+							</svg>
+						</div>
+						<h3 class="text-2xl font-bold text-gray-900 mb-4">Anamnesebogen herunterladen</h3>
+						<p class="text-gray-600 mb-6">
+							Unser detaillierter Anamnesebogen hilft uns dabei, Ihre Beschwerden und 
+							Behandlungsziele optimal zu verstehen. Bitte bringen Sie den ausgefüllten 
+							Bogen zu Ihrem ersten Termin mit.
+						</p>
+						<div class="space-y-4">
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+								<span class="text-gray-700">Detaillierte Beschwerdenerfassung</span>
+							</div>
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+								<span class="text-gray-700">Medizinische Vorgeschichte</span>
+							</div>
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+								<span class="text-gray-700">Behandlungsziele definieren</span>
+							</div>
+							<div class="flex items-center">
+								<svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+								</svg>
+								<span class="text-gray-700">Zeit sparen beim ersten Termin</span>
+							</div>
+						</div>
+					</div>
+					<div class="text-center">
+						<div class="bg-white rounded-xl p-8 shadow-lg">
+							<div class="w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
+								<svg class="w-12 h-12 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M5,20H19V18H5M19,9H15L13,7H9C7.89,7 7,7.89 7,9V15A2,2 0 0,0 9,17H15A2,2 0 0,0 17,15V11H19A2,2 0 0,0 21,9V11A2,2 0 0,0 19,13H17V15A4,4 0 0,1 13,19H9A4,4 0 0,1 5,15V9A4,4 0 0,1 9,5H13L15,7H19A4,4 0 0,1 23,11V9A4,4 0 0,1 19,5Z"></path>
+								</svg>
+							</div>
+							<h4 class="text-xl font-bold text-gray-900 mb-4">PDF-Download</h4>
+							<p class="text-gray-600 mb-6">
+								Der Anamnesebogen ist als PDF verfügbar und kann einfach ausgedruckt und ausgefüllt werden.
+							</p>
+							<a href="/anamnesebogen.pdf" download class="inline-flex items-center bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+								<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+									<path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+								</svg>
+								Anamnesebogen herunterladen
+							</a>
+							<p class="text-sm text-gray-500 mt-4">
+								PDF • 2 Seiten • Deutsch
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 <!-- Call-to-Action Banner -->
 <section class="bg-gradient-to-r from-pink-600 to-purple-600 py-16">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
