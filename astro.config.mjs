@@ -7,8 +7,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   // GitHub Pages deployment configuration
   // WICHTIG: Passen Sie diese Werte an Ihr Repository an!
-  site: 'https://your-username.github.io',
-  base: '/your-repository-name',
+  site: 'https://izayt.github.io',
+  base: '/Annette_Fusspflege/',
   
   vite: {
     plugins: [tailwindcss()],
