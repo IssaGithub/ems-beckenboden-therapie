@@ -12,11 +12,16 @@
     "deploy:github": "bash deploy-github.sh",
     "test:css": "npm run build:github && find ./dist -name '*.css' -type f | head -10 && echo 'CSS files found above' || echo 'No CSS files found!'",
     "debug:build": "npm run build:github && echo '=== Build Contents ===' && ls -la dist/ && echo '=== CSS Files ===' && find dist -name '*.css' -type f",
+    "generate:pdf": "node scripts/generate-pdf.js",
+    "build:complete": "npm run generate:pdf && npm run build:github",
     "astro": "astro"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.11.1",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.14.0"
   }
 }

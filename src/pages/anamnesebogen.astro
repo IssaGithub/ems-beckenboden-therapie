@@ -1,0 +1,367 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+	title="Anamnesebogen - EMS Beckenboden Therapie"
+	description="Anamnesebogen für die EMS Beckenboden Therapie bei Annette Fneiche"
+>
+
+<div class="min-h-screen bg-white p-8 max-w-4xl mx-auto print:p-0 print:max-w-none">
+	<!-- Header -->
+	<div class="text-center mb-8 print:mb-6">
+		<h1 class="text-3xl font-bold text-gray-900 mb-2">ANAMNESEBOGEN</h1>
+		<h2 class="text-xl text-pink-600 font-semibold">EMS Beckenboden Therapie</h2>
+		<div class="text-gray-600 mt-4">
+			<p class="font-medium">Annette Fneiche</p>
+			<p>Telefon: (07131) 4050729 | E-Mail: hallo@annette-fneiche.de</p>
+		</div>
+	</div>
+
+	<!-- Hinweise -->
+	<div class="bg-pink-50 border border-pink-200 rounded-lg p-4 mb-8 print:bg-gray-50 print:border-gray-300">
+		<p class="text-sm text-gray-700">
+			<strong>Liebe Patientin, lieber Patient,</strong><br>
+			bitte füllen Sie diesen Bogen vollständig aus und bringen Sie ihn zu Ihrem ersten Termin mit. 
+			Ihre Angaben helfen uns dabei, eine optimale und individuelle Behandlung für Sie zu planen.
+		</p>
+	</div>
+
+	<!-- Persönliche Daten -->
+	<div class="mb-8">
+		<h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-pink-600">1. PERSÖNLICHE DATEN</h3>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+			<div>
+				<label class="block text-sm font-medium text-gray-700 mb-1">Nachname:</label>
+				<div class="border-b border-gray-300 h-8"></div>
+			</div>
+			<div>
+				<label class="block text-sm font-medium text-gray-700 mb-1">Vorname:</label>
+				<div class="border-b border-gray-300 h-8"></div>
+			</div>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+			<div>
+				<label class="block text-sm font-medium text-gray-700 mb-1">Geburtsdatum:</label>
+				<div class="border-b border-gray-300 h-8"></div>
+			</div>
+			<div>
+				<label class="block text-sm font-medium text-gray-700 mb-1">Alter:</label>
+				<div class="border-b border-gray-300 h-8"></div>
+			</div>
+			<div>
+				<label class="block text-sm font-medium text-gray-700 mb-1">Geschlecht:</label>
+				<div class="flex gap-4 mt-2">
+					<label class="flex items-center">
+						<input type="checkbox" class="mr-2"> weiblich
+					</label>
+					<label class="flex items-center">
+						<input type="checkbox" class="mr-2"> männlich
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="mb-4">
+			<label class="block text-sm font-medium text-gray-700 mb-1">Anschrift (Straße, PLZ, Ort):</label>
+			<div class="border-b border-gray-300 h-8 mb-2"></div>
+			<div class="border-b border-gray-300 h-8"></div>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+			<div>
+				<label class="block text-sm font-medium text-gray-700 mb-1">Telefon:</label>
+				<div class="border-b border-gray-300 h-8"></div>
+			</div>
+			<div>
+				<label class="block text-sm font-medium text-gray-700 mb-1">E-Mail:</label>
+				<div class="border-b border-gray-300 h-8"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Aktuelle Beschwerden -->
+	<div class="mb-8">
+		<h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-pink-600">2. AKTUELLE BESCHWERDEN</h3>
+		
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Was führt Sie zu uns? (Mehrfachnennung möglich)</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Harninkontinenz (unkontrollierter Harnverlust)
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Stuhlinkontinenz (unkontrollierter Stuhlverlust)
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Rückbildung nach Schwangerschaft
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Beckenbodenschwäche
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Sexuelle Probleme
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Rückenschmerzen
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Senkungsbeschwerden
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Vorbeugende Stärkung
+				</label>
+			</div>
+		</div>
+
+		<div class="mb-4">
+			<label class="block text-sm font-medium text-gray-700 mb-2">Sonstige Beschwerden:</label>
+			<div class="border border-gray-300 h-16"></div>
+		</div>
+
+		<div class="mb-4">
+			<label class="block text-sm font-medium text-gray-700 mb-2">Seit wann bestehen die Beschwerden?</label>
+			<div class="border-b border-gray-300 h-8"></div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Schweregrad der Beschwerden:</p>
+			<div class="flex gap-4">
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> leicht
+				</label>
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> mittel
+				</label>
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> stark
+				</label>
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> sehr stark
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<!-- Medizinische Vorgeschichte -->
+	<div class="mb-8">
+		<h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-pink-600">3. MEDIZINISCHE VORGESCHICHTE</h3>
+		
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Schwangerschaften und Geburten:</p>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-1">Anzahl Schwangerschaften:</label>
+					<div class="border-b border-gray-300 h-8"></div>
+				</div>
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-1">Anzahl Geburten:</label>
+					<div class="border-b border-gray-300 h-8"></div>
+				</div>
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-1">Datum letzte Geburt:</label>
+					<div class="border-b border-gray-300 h-8"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Art der Entbindung(en):</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Spontangeburt
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Kaiserschnitt
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Saugglocke/Zange
+				</label>
+				<label class="flex items-center mb-2">
+					<input type="checkbox" class="mr-2"> Episiotomie (Dammschnitt)
+				</label>
+			</div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Operationen im Beckenbereich:</p>
+			<div class="border border-gray-300 h-16"></div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Aktuelle Medikamente:</p>
+			<div class="border border-gray-300 h-16"></div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Bekannte Allergien:</p>
+			<div class="border border-gray-300 h-16"></div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Chronische Erkrankungen:</p>
+			<div class="border border-gray-300 h-16"></div>
+		</div>
+	</div>
+
+	<!-- Lebensstil -->
+	<div class="mb-8">
+		<h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-pink-600">4. LEBENSSTIL</h3>
+		
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Sportliche Aktivitäten:</p>
+			<div class="border border-gray-300 h-16"></div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Berufliche Tätigkeit:</p>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> überwiegend sitzend
+				</label>
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> überwiegend stehend
+				</label>
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> körperlich belastend
+				</label>
+			</div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Haben Sie schon einmal Beckenbodentraining gemacht?</p>
+			<div class="flex gap-4">
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> Ja
+				</label>
+				<label class="flex items-center">
+					<input type="checkbox" class="mr-2"> Nein
+				</label>
+			</div>
+			<div class="mt-2">
+				<label class="block text-sm font-medium text-gray-700 mb-1">Falls ja, wann und wo:</label>
+				<div class="border-b border-gray-300 h-8"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Behandlungsziele -->
+	<div class="mb-8">
+		<h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-pink-600">5. BEHANDLUNGSZIELE</h3>
+		
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Was möchten Sie durch die Behandlung erreichen?</p>
+			<div class="border border-gray-300 h-24"></div>
+		</div>
+
+		<div class="mb-4">
+			<p class="font-medium text-gray-900 mb-2">Haben Sie Bedenken oder Ängste bezüglich der Behandlung?</p>
+			<div class="border border-gray-300 h-16"></div>
+		</div>
+	</div>
+
+	<!-- Einverständniserklärung -->
+	<div class="mb-8">
+		<h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-pink-600">6. EINVERSTÄNDNISERKLÄRUNG</h3>
+		
+		<div class="space-y-3">
+			<label class="flex items-start">
+				<input type="checkbox" class="mr-3 mt-1 flex-shrink-0">
+				<span class="text-sm text-gray-700">
+					Ich bin über die EMS Beckenboden Therapie aufgeklärt worden und stimme der Behandlung zu.
+				</span>
+			</label>
+			
+			<label class="flex items-start">
+				<input type="checkbox" class="mr-3 mt-1 flex-shrink-0">
+				<span class="text-sm text-gray-700">
+					Ich bin damit einverstanden, dass meine Daten zur Behandlungsplanung und -dokumentation verwendet werden.
+				</span>
+			</label>
+			
+			<label class="flex items-start">
+				<input type="checkbox" class="mr-3 mt-1 flex-shrink-0">
+				<span class="text-sm text-gray-700">
+					Ich wurde über die Datenschutzbestimmungen informiert und stimme diesen zu.
+				</span>
+			</label>
+		</div>
+	</div>
+
+	<!-- Unterschrift -->
+	<div class="mb-8">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<div>
+				<div class="border-b border-gray-300 h-16 mb-2"></div>
+				<p class="text-sm text-gray-700 text-center">Datum, Unterschrift Patient/in</p>
+			</div>
+			<div>
+				<div class="border-b border-gray-300 h-16 mb-2"></div>
+				<p class="text-sm text-gray-700 text-center">Datum, Unterschrift Therapeutin</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Therapeuten-Bereich -->
+	<div class="border-t-2 border-gray-300 pt-6 print:page-break-before-always">
+		<h3 class="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-pink-600">FÜR THERAPEUTEN</h3>
+		
+		<div class="mb-4">
+			<label class="block text-sm font-medium text-gray-700 mb-2">Befund:</label>
+			<div class="border border-gray-300 h-24"></div>
+		</div>
+
+		<div class="mb-4">
+			<label class="block text-sm font-medium text-gray-700 mb-2">Behandlungsplan:</label>
+			<div class="border border-gray-300 h-24"></div>
+		</div>
+
+		<div class="mb-4">
+			<label class="block text-sm font-medium text-gray-700 mb-2">Anmerkungen:</label>
+			<div class="border border-gray-300 h-24"></div>
+		</div>
+	</div>
+</div>
+
+<!-- Print Button -->
+<div class="fixed bottom-6 right-6 print:hidden">
+	<button onclick="window.print()" 
+			class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-colors">
+		📄 Als PDF drucken
+	</button>
+</div>
+
+</Layout>
+
+<style>
+	@media print {
+		.print\:hidden { display: none !important; }
+		.print\:p-0 { padding: 0 !important; }
+		.print\:max-w-none { max-width: none !important; }
+		.print\:mb-6 { margin-bottom: 1.5rem !important; }
+		.print\:bg-gray-50 { background-color: #f9fafb !important; }
+		.print\:border-gray-300 { border-color: #d1d5db !important; }
+		.print\:page-break-before-always { page-break-before: always !important; }
+		
+		/* Bessere Print-Einstellungen */
+		@page {
+			margin: 1cm;
+			size: A4;
+		}
+		
+		body {
+			-webkit-print-color-adjust: exact !important;
+			color-adjust: exact !important;
+		}
+		
+		/* Sicherstellen, dass Checkboxen sichtbar sind */
+		input[type="checkbox"] {
+			-webkit-appearance: checkbox !important;
+			appearance: checkbox !important;
+			width: 14px !important;
+			height: 14px !important;
+		}
+	}
+</style> 
