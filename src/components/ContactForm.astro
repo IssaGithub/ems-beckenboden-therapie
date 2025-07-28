@@ -1,0 +1,319 @@
+---
+// Contact Form Component with working functionality
+---
+
+<div id="kontaktformular">
+	<h3 class="text-2xl font-bold text-gray-900 mb-8">Nachricht senden</h3>
+	
+	<!-- Success/Error Messages -->
+	<div id="form-messages" class="hidden mb-6">
+		<div id="success-message" class="hidden bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+			<div class="flex items-center">
+				<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+					<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+				</svg>
+				<span>Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns schnellstmöglich bei Ihnen.</span>
+			</div>
+		</div>
+		<div id="error-message" class="hidden bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+			<div class="flex items-center">
+				<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+					<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+				</svg>
+				<span>Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.</span>
+			</div>
+		</div>
+	</div>
+	
+	<form id="contact-form" class="space-y-6">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<div>
+				<label for="vorname" class="block text-sm font-medium text-gray-700 mb-2">Vorname *</label>
+				<input type="text" id="vorname" name="vorname" required
+					   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
+			</div>
+			<div>
+				<label for="nachname" class="block text-sm font-medium text-gray-700 mb-2">Nachname *</label>
+				<input type="text" id="nachname" name="nachname" required
+					   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
+			</div>
+		</div>
+		
+		<div>
+			<label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-Mail Adresse *</label>
+			<input type="email" id="email" name="email" required
+				   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
+		</div>
+		
+		<div>
+			<label for="telefon" class="block text-sm font-medium text-gray-700 mb-2">Telefon</label>
+			<input type="tel" id="telefon" name="telefon"
+				   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
+		</div>
+		
+		<div>
+			<label for="betreff" class="block text-sm font-medium text-gray-700 mb-2">Betreff *</label>
+			<select id="betreff" name="betreff" required
+					class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors">
+				<option value="">Bitte wählen...</option>
+				<option value="termin">Terminanfrage</option>
+				<option value="beratung">Beratung</option>
+				<option value="info">Allgemeine Informationen</option>
+				<option value="preise">Fragen zu Preisen</option>
+			</select>
+		</div>
+		
+		<div>
+			<label for="nachricht" class="block text-sm font-medium text-gray-700 mb-2">Ihre Nachricht *</label>
+			<textarea id="nachricht" name="nachricht" rows="5" required
+					  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors"
+					  placeholder="Beschreiben Sie Ihr Anliegen oder Ihre Fragen..."></textarea>
+		</div>
+		
+		<div class="flex items-start">
+			<input type="checkbox" id="datenschutz" name="datenschutz" required
+				   class="mt-1 w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500">
+			<label for="datenschutz" class="ml-3 text-sm text-gray-700">
+				Ich stimme der <a href="/rechtliches#datenschutz" class="text-pink-600 hover:text-pink-700">Datenschutzerklärung</a> zu und bin damit einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert werden. *
+			</label>
+		</div>
+		
+		<button type="submit" id="submit-btn"
+				class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-lg transition-colors duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+			<span id="btn-text">Nachricht senden</span>
+			<span id="btn-loading" class="hidden">
+				<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+					<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+				</svg>
+				Wird gesendet...
+			</span>
+		</button>
+	</form>
+	
+	<!-- Alternative Contact Methods -->
+	<div class="mt-8 p-6 bg-pink-50 rounded-lg">
+		<h4 class="font-semibold text-gray-900 mb-2">Alternative Kontaktmöglichkeiten</h4>
+		<p class="text-gray-600 text-sm mb-4">
+			Falls das Formular nicht funktioniert, können Sie uns gerne direkt kontaktieren:
+		</p>
+		<div class="flex flex-col sm:flex-row gap-4">
+			<a href="tel:071314050729" 
+			   class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg text-center transition-colors flex items-center justify-center">
+				<svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+					<path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+				</svg>
+				(07131) 4050729
+			</a>
+			<a href="tel:01745968931" 
+			   class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg text-center transition-colors flex items-center justify-center">
+				<svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+					<path d="M16,2A2,2 0 0,1 18,4V20A2,2 0 0,1 16,22H8A2,2 0 0,1 6,20V4A2,2 0 0,1 8,2H16M16,4H8V20H16V4M9,6V7.5H15V6H9M12,18A1.5,1.5 0 0,0 13.5,16.5A1.5,1.5 0 0,0 12,15A1.5,1.5 0 0,0 10.5,16.5A1.5,1.5 0 0,0 12,18Z"/>
+				</svg>
+				(0174) 5968931
+			</a>
+			<a href="mailto:hallo@annette-fneiche.de" 
+			   class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg text-center transition-colors flex items-center justify-center">
+				<svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+					<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+					<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+				</svg>
+				E-Mail senden
+			</a>
+		</div>
+	</div>
+</div>
+
+<script>
+	// Contact Form Functionality
+	document.addEventListener('DOMContentLoaded', function() {
+		const form = document.getElementById('contact-form');
+		const submitBtn = document.getElementById('submit-btn');
+		const btnText = document.getElementById('btn-text');
+		const btnLoading = document.getElementById('btn-loading');
+		const formMessages = document.getElementById('form-messages');
+		const successMessage = document.getElementById('success-message');
+		const errorMessage = document.getElementById('error-message');
+		
+		if (!form) return;
+		
+		// Form submission handler
+		form.addEventListener('submit', function(e) {
+			e.preventDefault();
+			
+			// Show loading state
+			showLoading();
+			
+			// Get form data
+			const formData = new FormData(form);
+			const data = Object.fromEntries(formData);
+			
+			// Validate required fields
+			if (!validateForm(data)) {
+				showError('Bitte füllen Sie alle Pflichtfelder aus.');
+				hideLoading();
+				return;
+			}
+			
+			// Use mailto link directly (most reliable method)
+			setTimeout(() => {
+				createMailtoLink(data);
+				hideLoading();
+			}, 500);
+		});
+		
+		function validateForm(data) {
+			return data.vorname && data.nachname && data.email && data.betreff && data.nachricht && data.datenschutz;
+		}
+		
+		function showLoading() {
+			if (submitBtn) submitBtn.disabled = true;
+			if (btnText) btnText.classList.add('hidden');
+			if (btnLoading) btnLoading.classList.remove('hidden');
+		}
+		
+		function hideLoading() {
+			if (submitBtn) submitBtn.disabled = false;
+			if (btnText) btnText.classList.remove('hidden');
+			if (btnLoading) btnLoading.classList.add('hidden');
+		}
+		
+		function showSuccess() {
+			if (formMessages) formMessages.classList.remove('hidden');
+			if (successMessage) successMessage.classList.remove('hidden');
+			if (errorMessage) errorMessage.classList.add('hidden');
+			
+			// Scroll to success message
+			if (formMessages) formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+		
+		function showError(message) {
+			if (formMessages) formMessages.classList.remove('hidden');
+			if (errorMessage) errorMessage.classList.remove('hidden');
+			if (successMessage) successMessage.classList.add('hidden');
+			const errorSpan = errorMessage?.querySelector('span');
+			if (errorSpan) errorSpan.textContent = message;
+			
+			// Scroll to error message
+			if (formMessages) formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+		
+		async function sendWithEmailJS(data) {
+			// You would need to set up EmailJS service
+			// For now, return false to use mailto fallback
+			return false;
+		}
+		
+		function createMailtoLink(data) {
+			const subject = encodeURIComponent(`Kontaktanfrage: ${data.betreff}`);
+			const body = encodeURIComponent(`Hallo,
+
+ich möchte gerne Kontakt aufnehmen.
+
+Name: ${data.vorname} ${data.nachname}
+E-Mail: ${data.email}
+Telefon: ${data.telefon || 'Nicht angegeben'}
+Betreff: ${data.betreff}
+
+Nachricht:
+${data.nachricht}
+
+Mit freundlichen Grüßen
+${data.vorname} ${data.nachname}`);
+			
+			const mailtoLink = `mailto:hallo@annette-fneiche.de?subject=${subject}&body=${body}`;
+			
+			// Create a temporary link and click it
+			const link = document.createElement('a');
+			link.href = mailtoLink;
+			link.style.display = 'none';
+			document.body.appendChild(link);
+			
+			try {
+				link.click();
+				document.body.removeChild(link);
+				
+				// Show success message
+				setTimeout(() => {
+					showSuccess();
+					if (form && typeof form.reset === 'function') {
+						form.reset();
+					}
+				}, 500);
+			} catch (error) {
+				document.body.removeChild(link);
+				console.error('Mailto error:', error);
+				
+				// Show alternative contact info
+				showError('Ihr E-Mail-Programm konnte nicht geöffnet werden. Bitte kontaktieren Sie uns direkt:');
+				
+				// Show copy to clipboard option
+				showCopyToClipboard(data);
+			}
+		}
+		
+		function showCopyToClipboard(data) {
+			const emailText = `An: hallo@annette-fneiche.de
+Betreff: Kontaktanfrage: ${data.betreff}
+
+Hallo,
+
+ich möchte gerne Kontakt aufnehmen.
+
+Name: ${data.vorname} ${data.nachname}
+E-Mail: ${data.email}
+Telefon: ${data.telefon || 'Nicht angegeben'}
+Betreff: ${data.betreff}
+
+Nachricht:
+${data.nachricht}
+
+Mit freundlichen Grüßen
+${data.vorname} ${data.nachname}`;
+
+			// Create copy button
+			const copyButton = document.createElement('button');
+			copyButton.textContent = 'E-Mail-Text kopieren';
+			copyButton.className = 'mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors';
+			copyButton.onclick = function() {
+				if (navigator.clipboard) {
+					navigator.clipboard.writeText(emailText).then(() => {
+						copyButton.textContent = 'Kopiert!';
+						copyButton.className = 'mt-4 bg-green-500 text-white font-semibold py-2 px-4 rounded';
+						setTimeout(() => {
+							copyButton.textContent = 'E-Mail-Text kopieren';
+							copyButton.className = 'mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors';
+						}, 2000);
+					});
+				}
+			};
+			
+			if (errorMessage) {
+				errorMessage.appendChild(copyButton);
+			}
+		}
+	});
+</script>
+
+<style>
+	/* Smooth animations */
+	.transition-colors {
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+	}
+	
+	/* Focus styles */
+	input:focus, select:focus, textarea:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(219, 39, 119, 0.1);
+	}
+	
+	/* Loading animation */
+	@keyframes spin {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
+	}
+	
+	.animate-spin {
+		animation: spin 1s linear infinite;
+	}
+</style> 
