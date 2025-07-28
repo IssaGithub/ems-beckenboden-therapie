@@ -92,7 +92,7 @@ const { title, description = "Professionelle EMS Beckenboden Therapie für Ihre 
 
 					<!-- Logo -->
 					<div class="flex-1 flex justify-center md:justify-end">
-						<a href="/" class="text-2xl font-bold text-pink-600 italic">
+						<a href={`${import.meta.env.BASE_URL}`} class="text-2xl font-bold text-pink-600 italic">
 							Annette Fneiche
 						</a>
 					</div>
@@ -120,14 +120,14 @@ const { title, description = "Professionelle EMS Beckenboden Therapie für Ihre 
 				<!-- Navigation -->
 				<nav class="border-t border-gray-200">
 					<div class="flex justify-center space-x-8 py-4">
-						<a href="/" class="text-pink-600 font-medium hover:text-pink-700 transition-colors">Home</a>
-						<a href="/#therapie" class="text-gray-700 hover:text-pink-600 transition-colors">Über die Therapie</a>
-						<a href="/#vorteile" class="text-gray-700 hover:text-pink-600 transition-colors">Vorteile</a>
-						<a href="/#ablauf" class="text-gray-700 hover:text-pink-600 transition-colors">Ablauf</a>
-						<a href="/#preise" class="text-gray-700 hover:text-pink-600 transition-colors">Preise</a>
-						<a href="/#download" class="text-gray-700 hover:text-pink-600 transition-colors">Download</a>
-						<a href="/#kontakt" class="text-gray-700 hover:text-pink-600 transition-colors">Kontakt</a>
-						<a href="/rechtliches" class="text-gray-700 hover:text-pink-600 transition-colors">Rechtliches</a>
+						<a href={`${import.meta.env.BASE_URL}`} class="text-pink-600 font-medium hover:text-pink-700 transition-colors">Home</a>
+						<a href={`${import.meta.env.BASE_URL}#therapie`} class="text-gray-700 hover:text-pink-600 transition-colors">Über die Therapie</a>
+						<a href={`${import.meta.env.BASE_URL}#vorteile`} class="text-gray-700 hover:text-pink-600 transition-colors">Vorteile</a>
+						<a href={`${import.meta.env.BASE_URL}#ablauf`} class="text-gray-700 hover:text-pink-600 transition-colors">Ablauf</a>
+						<a href={`${import.meta.env.BASE_URL}#preise`} class="text-gray-700 hover:text-pink-600 transition-colors">Preise</a>
+						<a href={`${import.meta.env.BASE_URL}#download`} class="text-gray-700 hover:text-pink-600 transition-colors">Download</a>
+						<a href={`${import.meta.env.BASE_URL}#kontakt`} class="text-gray-700 hover:text-pink-600 transition-colors">Kontakt</a>
+						<a href={`${import.meta.env.BASE_URL}rechtliches`} class="text-gray-700 hover:text-pink-600 transition-colors">Rechtliches</a>
 					</div>
 				</nav>
 			</div>
@@ -201,9 +201,9 @@ const { title, description = "Professionelle EMS Beckenboden Therapie für Ihre 
 					<div class="flex flex-col md:flex-row justify-between items-center">
 						<p class="text-gray-400 mb-4 md:mb-0">&copy; 2024 Annette Fneiche. Alle Rechte vorbehalten.</p>
 						<div class="flex space-x-6 text-gray-400">
-							<a href="/rechtliches#impressum" class="hover:text-pink-400 transition-colors">Impressum</a>
-							<a href="/rechtliches#datenschutz" class="hover:text-pink-400 transition-colors">Datenschutz</a>
-							<a href="/rechtliches#kontakt" class="hover:text-pink-400 transition-colors">Kontakt</a>
+							<a href={`${import.meta.env.BASE_URL}rechtliches#impressum`} class="hover:text-pink-400 transition-colors">Impressum</a>
+							<a href={`${import.meta.env.BASE_URL}rechtliches#datenschutz`} class="hover:text-pink-400 transition-colors">Datenschutz</a>
+							<a href={`${import.meta.env.BASE_URL}rechtliches#kontakt`} class="hover:text-pink-400 transition-colors">Kontakt</a>
 						</div>
 					</div>
 				</div>
