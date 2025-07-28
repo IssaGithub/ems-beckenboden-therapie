@@ -215,4 +215,37 @@ const { title, description = "Professionelle EMS Beckenboden Therapie für Ihre 
 
 <script>
 	import '../styles/global.css';
+	
+	// Smooth scrolling für interne Links (GitHub Pages kompatibel)
+	document.addEventListener('DOMContentLoaded', function() {
+		// Get base URL from meta tag or use current origin + pathname without file
+		const baseURL = import.meta.env.BASE_URL || '/';
+		
+		document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				const href = this.getAttribute('href');
+				
+				// Check if it's an internal link to the same page
+				if (href.includes('#') && (href.startsWith(baseURL) || href.startsWith('#'))) {
+					e.preventDefault();
+					
+					// Extract anchor ID
+					const anchorId = href.split('#')[1];
+					const target = document.getElementById(anchorId);
+					
+					if (target) {
+						target.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+						
+						// Update URL without page reload
+						if (window.history && window.history.pushState) {
+							window.history.pushState(null, null, `${baseURL}#${anchorId}`);
+						}
+					}
+				}
+			});
+		});
+	});
 </script> 
