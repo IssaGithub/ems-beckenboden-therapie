@@ -10,14 +10,14 @@ Eine professionelle, SEO-optimierte Landingpage für EMS Beckenboden Therapie, e
 - **Accessibility**: WCAG-konforme Implementierung
 - **Call-to-Actions**: Strategisch platzierte Conversion-Elemente
 
-## 📋 Inhalte
+## 📋 Inhalte 
 
 - **Hero-Bereich**: Emotionale Ansprache mit klaren CTAs
 - **Therapie-Information**: Detaillierte Erklärung der EMS Beckenboden Therapie
 - **Vorteile**: Sechs Hauptvorteile der Behandlung
 - **Behandlungsablauf**: Vier-Schritte-Prozess
 - **Preise**: Transparente Preisstruktur mit Paketen
-- **Kontakt**: Kontaktformular und Informationen
+- **Kontakt**: Kontaktformular und Informationen.
 
 ## 🛠 Technologie-Stack
 
