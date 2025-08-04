@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [master]
     types: [closed]
+  workflow_dispatch:  # Manual trigger
 
 jobs:
   build-and-deploy:
