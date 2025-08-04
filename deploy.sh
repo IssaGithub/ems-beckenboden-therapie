@@ -11,9 +11,9 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Konfiguration - BITTE ANPASSEN!
-VPS_HOST="www.annette-fneiche.de"
+VPS_HOST="beckenbodentraining-heilbronn.de"
 VPS_USER="your-username"
-VPS_PATH="/var/www/annette-fneiche"
+VPS_PATH="/var/www/beckenbodentraining-heilbronn"
 SSH_KEY_PATH="~/.ssh/id_rsa"  # Pfad zu Ihrem SSH-Key
 
 # Funktionen
@@ -79,11 +79,26 @@ install_dependencies() {
     fi
 }
 
-# Build erstellen
+# Build erstellen mit VPS Konfiguration
 build_project() {
-    print_step "Erstelle Production Build..."
-    if npm run build; then
+    print_step "Erstelle Production Build für VPS..."
+    
+    # Verwende VPS-spezifische Konfiguration
+    if npx astro build --config ./astro.config.vps.mjs; then
         print_success "Build erfolgreich erstellt"
+        
+        # Prüfe ob CSS-Dateien generiert wurden
+        print_step "Überprüfe CSS-Dateien..."
+        if find ./dist -name "*.css" -type f | head -1 | grep -q .; then
+            print_success "CSS-Dateien gefunden"
+        else
+            print_error "Keine CSS-Dateien gefunden!"
+            exit 1
+        fi
+        
+        # .nojekyll Datei für bessere Kompatibilität
+        touch ./dist/.nojekyll
+        
     else
         print_error "Fehler beim Erstellen des Builds"
         exit 1
@@ -142,7 +157,7 @@ create_nginx_config() {
     
     # Nginx Config erstellen
     ssh -i "$SSH_KEY_PATH" "$VPS_USER@$VPS_HOST" "
-        sudo tee /etc/nginx/sites-available/annette-fneiche > /dev/null << 'EOF'
+        sudo tee /etc/nginx/sites-available/beckenbodentraining-heilbronn > /dev/null << 'EOF'
 server {
     listen 80;
     server_name $VPS_HOST www.$VPS_HOST;
@@ -196,7 +211,7 @@ server {
 EOF
         
         # Site aktivieren
-        sudo ln -sf /etc/nginx/sites-available/annette-fneiche /etc/nginx/sites-enabled/
+        sudo ln -sf /etc/nginx/sites-available/beckenbodentraining-heilbronn /etc/nginx/sites-enabled/
         
         # Nginx testen und neuladen
         sudo nginx -t && sudo systemctl reload nginx
