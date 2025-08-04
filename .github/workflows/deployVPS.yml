@@ -1,0 +1,118 @@
+name: Build and Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    # Only run on main branch pushes or when PR is merged to main
+    if: github.ref == 'refs/heads/main' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro website
+        run: npm run build
+
+      - name: Debug build output
+        run: |
+          echo "🔍 Checking build output..."
+          ls -la dist/
+          echo "📁 Looking for CSS files..."
+          find dist/ -name "*.css" -type f
+          echo "📁 Looking for _astro directory..."
+          ls -la dist/_astro/ || echo "No _astro directory found"
+
+      - name: Create deployment archive
+        run: |
+          cd dist
+          tar -czf ../website.tar.gz .
+          cd ..
+          ls -la website.tar.gz
+
+      - name: Deploy to VPS via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          source: "website.tar.gz"
+          target: "/tmp/"
+          timeout: 60s
+          command_timeout: 10m
+
+      - name: Extract and setup website on VPS
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          timeout: 60s
+          command_timeout: 10m
+          script: |
+            # Create backup of current website
+            if [ -d "/var/www/EmsBeckenboden" ]; then
+              sudo cp -r /var/www/EmsBeckenboden /var/www/EmsBeckenboden.backup.$(date +%Y%m%d_%H%M%S)
+            fi
+            
+            # Create target directory if it doesn't exist
+            sudo mkdir -p /var/www/EmsBeckenboden
+            
+            # Clear current website files
+            sudo rm -rf /var/www/EmsBeckenboden/*
+            
+            # Extract new website files
+            cd /tmp
+            sudo tar -xzf website.tar.gz -C /var/www/EmsBeckenboden/
+            
+            # Set proper permissions
+            sudo chown -R www-data:www-data /var/www/EmsBeckenboden
+            sudo chmod -R 755 /var/www/EmsBeckenboden
+            
+            # Clean up temporary files
+            rm -f /tmp/website.tar.gz
+            
+            # Optional: Restart web server (uncomment if needed)
+            # sudo systemctl reload nginx
+            # sudo systemctl reload apache2
+            
+            echo "✅ Website deployed successfully to /var/www/EmsBeckenboden"
+            echo "📁 Current files:"
+            ls -la /var/www/EmsBeckenboden
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            echo "🔍 Deployment verification:"
+            echo "Directory exists: $(test -d /var/www/EmsBeckenboden && echo 'YES' || echo 'NO')"
+            echo "File count: $(find /var/www/EmsBeckenboden -type f | wc -l)"
+            echo "Directory size: $(du -sh /var/www/EmsBeckenboden)"
+            echo "✅ Deployment completed successfully!"
+
+      - name: Cleanup artifacts
+        if: always()
+        run: |
+          rm -f website.tar.gz
