@@ -2,17 +2,17 @@ name: Build and Deploy to VPS
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
     types: [closed]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
-    # Only run on main branch pushes or when PR is merged to main
-    if: github.ref == 'refs/heads/main' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main')
+    # Only run on master branch pushes or when PR is merged to master
+    if: github.ref == 'refs/heads/master' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'master')
 
     steps:
       - name: Checkout repository
