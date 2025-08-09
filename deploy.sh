@@ -148,6 +148,14 @@ prepare_vps() {
 upload_build() {
     print_step "Lade Build auf VPS hoch..."
     
+    # Debug script hochladen
+    print_step "Lade Debug-Script hoch..."
+    if rsync -avz -e "ssh -i $SSH_KEY_PATH" ./scripts/debug-css.sh "$VPS_USER@$VPS_HOST:$VPS_PATH/debug-css.sh"; then
+        print_success "Debug-Script hochgeladen"
+        # Make script executable
+        ssh -i "$SSH_KEY_PATH" "$VPS_USER@$VPS_HOST" "chmod +x $VPS_PATH/debug-css.sh"
+    fi
+    
     # Rsync für effizienten Upload
     if rsync -avz --delete -e "ssh -i $SSH_KEY_PATH" ./dist/ "$VPS_USER@$VPS_HOST:$VPS_PATH/"; then
         print_success "Build erfolgreich hochgeladen"
@@ -155,6 +163,11 @@ upload_build() {
         print_error "Fehler beim Hochladen des Builds"
         exit 1
     fi
+    
+    # Run debug script
+    print_step "Führe Debug-Script aus..."
+    ssh -i "$SSH_KEY_PATH" "$VPS_USER@$VPS_HOST" "cd $VPS_PATH && ./debug-css.sh > debug-output.txt"
+    print_success "Debug-Informationen gespeichert in $VPS_PATH/debug-output.txt"
 }
 
 # Nginx Konfiguration erstellen
@@ -178,14 +191,31 @@ server {
     gzip_proxied expired no-cache no-store private must-revalidate auth;
     gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
     
-    # CSS Files - Special handling
-    location ~* \.css$ {
+    # CSS files - Extra wide matching to catch all CSS files regardless of path
+    location ~* \.(css)$ {
         add_header Content-Type "text/css";
         expires 1y;
         add_header Cache-Control \"public, immutable\";
+        try_files \$uri \$uri/ =404;
+        
+        # Debug logging for CSS files
+        error_log /var/log/nginx/css_debug.log debug;
+        access_log /var/log/nginx/css_access.log;
     }
 
-    # Other static assets
+    # Astro assets folder catch-all
+    location ~* /(_astro|_assets)/ {
+        try_files \$uri \$uri/ =404;
+        expires 1y;
+        add_header Cache-Control \"public, immutable\";
+    }
+    
+    # Legacy path handling for GitHub Pages paths - redirect to root
+    location /ems-beckenboden-therapie/ {
+        rewrite ^/ems-beckenboden-therapie/(.*)$ /\$1 permanent;
+    }
+    
+    # Static assets
     location ~* \.(jpg|jpeg|png|gif|ico|js|svg|woff|woff2|ttf|eot)$ {
         expires 1y;
         add_header Cache-Control \"public, immutable\";
