@@ -13,6 +13,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       assetsInlineLimit: 0, // Keine Assets inline für bessere Caching
+      cssCodeSplit: false, // Generate a single CSS file
+    },
+    css: {
+      devSourcemap: true, // Helpful for debugging
     }
   },
   

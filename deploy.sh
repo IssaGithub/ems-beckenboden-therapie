@@ -91,8 +91,14 @@ build_project() {
         print_step "Überprüfe CSS-Dateien..."
         if find ./dist -name "*.css" -type f | head -1 | grep -q .; then
             print_success "CSS-Dateien gefunden"
+            echo "CSS files found:"
+            find ./dist -name "*.css" -type f | head -5
         else
             print_error "Keine CSS-Dateien gefunden!"
+            echo "Checking build directory structure:"
+            ls -la ./dist
+            echo "Checking for any style-related files:"
+            find ./dist -type f -name "*style*" -o -name "*.css*"
             exit 1
         fi
         
@@ -176,6 +182,10 @@ server {
     location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
         expires 1y;
         add_header Cache-Control \"public, immutable\";
+        # Ensure correct MIME type for CSS files
+        types {
+            text/css css;
+        }
     }
     
     # HTML Cache
