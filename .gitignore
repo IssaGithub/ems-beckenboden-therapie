@@ -32,3 +32,12 @@ pnpm-debug.log*
 *.bak
 astro.config.mjs.backup
 public/sitemap.xml.backup
+
+# Configuration backups
+astro.config.*.backup
+*.config.js.backup
+*.config.mjs.backup
+
+# Temporary build files
+.temp/
+.cache/

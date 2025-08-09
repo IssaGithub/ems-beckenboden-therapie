@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   // VPS deployment configuration
   site: 'https://beckenbodentraining-heilbronn.de',
-  // NO base path for VPS - site runs from domain root
+  base: '', // Empty base path to ensure no subdirectory
   
   vite: {
     plugins: [tailwindcss()],

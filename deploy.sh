@@ -296,6 +296,13 @@ optimize_performance() {
             sudo rm -rf /var/cache/nginx/*
         fi
         
+        # Remove any temporary symbolic links or files from GitHub Pages deployment
+        # that could cause path conflicts
+        if [ -d "$VPS_PATH/ems-beckenboden-therapie" ]; then
+            echo "Removing GitHub Pages directory structure from VPS..."
+            sudo rm -rf "$VPS_PATH/ems-beckenboden-therapie"
+        fi
+        
         # Restart Nginx für beste Performance
         sudo systemctl restart nginx
     "
