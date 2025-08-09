@@ -102,14 +102,13 @@ build_project() {
             exit 1
         fi
         
-        # Fix asset paths in HTML files
-        print_step "Korrigiere Asset-Pfade in HTML-Dateien..."
-        chmod +x ./scripts/fix-paths.sh
-        if ./scripts/fix-paths.sh; then
-            print_success "Asset-Pfade korrigiert"
+        # No need for the fix-paths script anymore since we've fixed the templates
+        print_step "Stelle sicher, dass keine GitHub Pages Pfade verwendet werden..."
+        if grep -r "ems-beckenboden-therapie" ./dist --include="*.html" | grep -v "grep"; then
+            print_error "GitHub Pages Pfade gefunden! Dies sollte nicht passieren."
+            print_step "Die Pfade wurden bereits in den Templates korrigiert, überprüfe die Build-Konfiguration."
         else
-            print_error "Fehler beim Korrigieren der Asset-Pfade"
-            exit 1
+            print_success "Keine GitHub Pages Pfade gefunden, build ist korrekt."
         fi
         
         # .nojekyll Datei für bessere Kompatibilität
@@ -373,18 +372,11 @@ optimize_performance() {
             sudo rm -rf "$VPS_PATH/ems-beckenboden-therapie"
         fi
         
-        # Create symbolic link for backward compatibility with any hardcoded paths
-        # This ensures that if any CSS paths reference /ems-beckenboden-therapie/_astro/,
-        # they will still work by pointing to the correct files
-        echo "Creating compatibility symlinks for CSS paths..."
-        mkdir -p "$VPS_PATH/ems-beckenboden-therapie"
-        if [ -d "$VPS_PATH/_astro" ]; then
-            ln -sfn "$VPS_PATH/_astro" "$VPS_PATH/ems-beckenboden-therapie/_astro"
-            echo "Created symlink for _astro directory"
-        fi
-        if [ -d "$VPS_PATH/assets" ]; then
-            ln -sfn "$VPS_PATH/assets" "$VPS_PATH/ems-beckenboden-therapie/assets"
-            echo "Created symlink for assets directory"
+        # We no longer need compatibility symlinks as all paths have been fixed in templates
+        # But let's ensure no old directories remain
+        if [ -d "$VPS_PATH/ems-beckenboden-therapie" ]; then
+            echo "Removing old GitHub Pages directory structure..."
+            sudo rm -rf "$VPS_PATH/ems-beckenboden-therapie"
         fi
         
         # Restart Nginx für beste Performance

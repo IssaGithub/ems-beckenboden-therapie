@@ -4,10 +4,11 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
-// Lokale Entwicklungskonfiguration (ohne GitHub Pages base path)
+// Lokale Entwicklungskonfiguration
 export default defineConfig({
   // Lokale Entwicklung
   site: 'http://localhost:4321',
+  base: '', // Explizit kein Base Path
   
   vite: {
     plugins: [tailwindcss()],
@@ -25,7 +26,7 @@ export default defineConfig({
   
   // Optimize for production
   build: {
-    assets: '_astro', // Standard Astro Assets Ordner
+    assets: 'assets', // Konsistenter Asset-Ordner für alle Umgebungen
     inlineStylesheets: 'never', // CSS immer als externe Dateien
   },
   
