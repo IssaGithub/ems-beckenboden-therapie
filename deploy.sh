@@ -203,8 +203,8 @@ server {
         access_log /var/log/nginx/css_access.log;
     }
 
-    # Astro assets folder catch-all
-    location ~* /(_astro|_assets)/ {
+    # Astro assets folder catch-all - match all possible asset folders
+    location ~* /(_astro|_assets|assets)/ {
         try_files \$uri \$uri/ =404;
         expires 1y;
         add_header Cache-Control \"public, immutable\";
@@ -331,6 +331,20 @@ optimize_performance() {
         if [ -d "$VPS_PATH/ems-beckenboden-therapie" ]; then
             echo "Removing GitHub Pages directory structure from VPS..."
             sudo rm -rf "$VPS_PATH/ems-beckenboden-therapie"
+        fi
+        
+        # Create symbolic link for backward compatibility with any hardcoded paths
+        # This ensures that if any CSS paths reference /ems-beckenboden-therapie/_astro/,
+        # they will still work by pointing to the correct files
+        echo "Creating compatibility symlinks for CSS paths..."
+        mkdir -p "$VPS_PATH/ems-beckenboden-therapie"
+        if [ -d "$VPS_PATH/_astro" ]; then
+            ln -sfn "$VPS_PATH/_astro" "$VPS_PATH/ems-beckenboden-therapie/_astro"
+            echo "Created symlink for _astro directory"
+        fi
+        if [ -d "$VPS_PATH/assets" ]; then
+            ln -sfn "$VPS_PATH/assets" "$VPS_PATH/ems-beckenboden-therapie/assets"
+            echo "Created symlink for assets directory"
         fi
         
         # Restart Nginx für beste Performance

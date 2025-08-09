@@ -30,7 +30,7 @@ export default defineConfig({
   
   // Optimize for production
   build: {
-    assets: '_assets', // Custom assets folder to avoid path conflicts
+    assets: 'assets', // Simple folder name to avoid confusion
     inlineStylesheets: 'never', // CSS immer als externe Dateien
   },
   
