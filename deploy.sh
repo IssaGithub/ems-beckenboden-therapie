@@ -102,6 +102,16 @@ build_project() {
             exit 1
         fi
         
+        # Fix asset paths in HTML files
+        print_step "Korrigiere Asset-Pfade in HTML-Dateien..."
+        chmod +x ./scripts/fix-paths.sh
+        if ./scripts/fix-paths.sh; then
+            print_success "Asset-Pfade korrigiert"
+        else
+            print_error "Fehler beim Korrigieren der Asset-Pfade"
+            exit 1
+        fi
+        
         # .nojekyll Datei für bessere Kompatibilität
         touch ./dist/.nojekyll
         
@@ -196,11 +206,21 @@ server {
         add_header Content-Type "text/css";
         expires 1y;
         add_header Cache-Control \"public, immutable\";
-        try_files \$uri \$uri/ =404;
+        # Try multiple possible paths for the CSS file
+        try_files \$uri \$uri/ /\$uri /ems-beckenboden-therapie\$uri =404;
         
         # Debug logging for CSS files
         error_log /var/log/nginx/css_debug.log debug;
         access_log /var/log/nginx/css_access.log;
+    }
+
+    # JavaScript files - Similar handling to CSS
+    location ~* \.(js)$ {
+        add_header Content-Type "application/javascript";
+        expires 1y;
+        add_header Cache-Control \"public, immutable\";
+        # Try multiple possible paths for the JS file
+        try_files \$uri \$uri/ /\$uri /ems-beckenboden-therapie\$uri =404;
     }
 
     # Astro assets folder catch-all - match all possible asset folders
@@ -208,6 +228,13 @@ server {
         try_files \$uri \$uri/ =404;
         expires 1y;
         add_header Cache-Control \"public, immutable\";
+    }
+    
+    # Extra asset path for GitHub Pages structure
+    location ~* /ems-beckenboden-therapie/(_astro|_assets|assets)/ {
+        # First try the direct path with ems-beckenboden-therapie prefix
+        # Then try without the prefix
+        rewrite ^/ems-beckenboden-therapie/((_astro|_assets|assets)/.*)$ /\$1 last;
     }
     
     # Legacy path handling for GitHub Pages paths - redirect to root
