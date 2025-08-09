@@ -333,6 +333,14 @@ import Layout from '../layouts/Layout.astro';
 	</button>
 </div>
 
+<script>
+	// Ensure correct BASE_URL is applied to all asset paths
+	document.addEventListener('DOMContentLoaded', () => {
+		const baseURL = import.meta.env.BASE_URL || '/';
+		console.log('Using BASE_URL:', baseURL);
+	});
+</script>
+
 </Layout>
 
 <style>

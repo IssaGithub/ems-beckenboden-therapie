@@ -178,14 +178,17 @@ server {
     gzip_proxied expired no-cache no-store private must-revalidate auth;
     gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
     
-    # Cache Einstellungen
-    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
+    # CSS Files - Special handling
+    location ~* \.css$ {
+        add_header Content-Type "text/css";
         expires 1y;
         add_header Cache-Control \"public, immutable\";
-        # Ensure correct MIME type for CSS files
-        types {
-            text/css css;
-        }
+    }
+
+    # Other static assets
+    location ~* \.(jpg|jpeg|png|gif|ico|js|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control \"public, immutable\";
     }
     
     # HTML Cache

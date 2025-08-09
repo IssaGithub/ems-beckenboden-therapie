@@ -13,7 +13,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       assetsInlineLimit: 0, // Keine Assets inline für bessere Caching
-      cssCodeSplit: false, // Generate a single CSS file
+      cssCodeSplit: true, // Allow individual CSS files for pages
+      rollupOptions: {
+        output: {
+          assetFileNames: 'styles/[name].[hash][extname]' // Consistent path for CSS files
+        }
+      }
     },
     css: {
       devSourcemap: true, // Helpful for debugging
@@ -25,7 +30,7 @@ export default defineConfig({
   
   // Optimize for production
   build: {
-    assets: '_astro', // Standard Astro Assets Ordner
+    assets: '_assets', // Custom assets folder to avoid path conflicts
     inlineStylesheets: 'never', // CSS immer als externe Dateien
   },
   
