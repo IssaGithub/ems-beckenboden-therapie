@@ -174,6 +174,19 @@ upload_build() {
         exit 1
     fi
     
+    # Upload and run emergency fix script
+    print_step "Lade Emergency-Fix-Script hoch..."
+    if rsync -avz -e "ssh -i $SSH_KEY_PATH" ./scripts/emergency-fix.sh "$VPS_USER@$VPS_HOST:$VPS_PATH/emergency-fix.sh"; then
+        print_success "Emergency-Fix-Script hochgeladen"
+        # Make script executable
+        ssh -i "$SSH_KEY_PATH" "$VPS_USER@$VPS_HOST" "chmod +x $VPS_PATH/emergency-fix.sh"
+        
+        # Run the emergency fix script
+        print_step "Führe Emergency-Fix-Script aus..."
+        ssh -i "$SSH_KEY_PATH" "$VPS_USER@$VPS_HOST" "cd $VPS_PATH && ./emergency-fix.sh > emergency-fix-output.txt"
+        print_success "Emergency-Fix durchgeführt, Ausgabe in $VPS_PATH/emergency-fix-output.txt"
+    fi
+    
     # Run debug script
     print_step "Führe Debug-Script aus..."
     ssh -i "$SSH_KEY_PATH" "$VPS_USER@$VPS_HOST" "cd $VPS_PATH && ./debug-css.sh > debug-output.txt"
