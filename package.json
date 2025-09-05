@@ -9,6 +9,7 @@
     "build:github": "astro build --config astro.config.mjs",
     "build:vps": "astro build --config astro.config.vps.mjs",
     "preview": "astro preview --config astro.config.vps.mjs",
+    "format": "prettier --write .",
     "preview:github": "astro preview --config astro.config.mjs",
     "preview:vps": "astro preview --config astro.config.vps.mjs",
     "deploy:github": "bash deploy-github.sh",
@@ -26,6 +27,7 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "prettier": "^3.6.2",
     "puppeteer": "^24.14.0"
   }
 }

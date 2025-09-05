@@ -10,7 +10,7 @@ Eine professionelle, SEO-optimierte Landingpage für EMS Beckenboden Therapie, e
 - **Accessibility**: WCAG-konforme Implementierung
 - **Call-to-Actions**: Strategisch platzierte Conversion-Elemente
 
-## 📋 Inhalte 
+## 📋 Inhalte
 
 - **Hero-Bereich**: Emotionale Ansprache mit klaren CTAs
 - **Therapie-Information**: Detaillierte Erklärung der EMS Beckenboden Therapie
@@ -31,7 +31,7 @@ Eine professionelle, SEO-optimierte Landingpage für EMS Beckenboden Therapie, e
 
 ### Voraussetzungen
 
-- Node.js 18+ 
+- Node.js 18+
 - npm oder yarn
 
 ### Lokale Entwicklung
@@ -64,6 +64,7 @@ npm run astro        # Astro CLI
 ### GitHub Pages Deployment (Automatisch - Empfohlen)
 
 1. **Repository auf GitHub erstellen und pushen**:
+
    ```bash
    git init
    git add .
@@ -85,6 +86,7 @@ npm run astro        # Astro CLI
    ```
 
 **Verfügbare Scripts**:
+
 ```bash
 npm run dev                # Lokale Entwicklung
 npm run build:github       # Build für GitHub Pages
@@ -98,6 +100,7 @@ npm run deploy:github      # Manuelles Deployment
 ### VPS Deployment (Alternativ)
 
 1. **Script konfigurieren**: Bearbeiten Sie `deploy.sh`:
+
    ```bash
    VPS_HOST="ihre-domain.de"
    VPS_USER="ihr-username"
@@ -106,15 +109,17 @@ npm run deploy:github      # Manuelles Deployment
    ```
 
 2. **SSH-Key Setup**: Stellen Sie sicher, dass SSH-Key-Authentication eingerichtet ist:
+
    ```bash
    ssh-copy-id user@ihr-vps.de
    ```
 
 3. **Deployment ausführen**:
+
    ```bash
    # Linux/Mac
    ./deploy.sh
-   
+
    # Windows (Git Bash)
    bash deploy.sh
    ```
@@ -122,11 +127,13 @@ npm run deploy:github      # Manuelles Deployment
 ### Manuelle Deployment-Schritte
 
 1. **Build erstellen**:
+
    ```bash
    npm run build
    ```
 
 2. **Build auf VPS hochladen**:
+
    ```bash
    scp -r dist/* user@ihr-vps.de:/var/www/html/
    ```
@@ -141,27 +148,27 @@ npm run deploy:github      # Manuelles Deployment
 server {
     listen 80;
     server_name ihre-domain.de www.ihre-domain.de;
-    
+
     root /var/www/ems-beckenboden-therapie;
     index index.html;
-    
+
     # Gzip Kompression
     gzip on;
     gzip_vary on;
     gzip_min_length 1024;
     gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
-    
+
     # Cache Einstellungen
     location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
         expires 1y;
         add_header Cache-Control "public, immutable";
     }
-    
+
     # Security Headers
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-XSS-Protection "1; mode=block" always;
-    
+
     location / {
         try_files $uri $uri/ /index.html;
     }
@@ -245,7 +252,8 @@ lighthouse https://ihre-domain.de
 
 ### Häufige Probleme
 
-1. **Build-Fehler**: 
+1. **Build-Fehler**:
+
    ```bash
    rm -rf node_modules package-lock.json
    npm install

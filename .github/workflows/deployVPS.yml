@@ -6,12 +6,12 @@ on:
   pull_request:
     branches: [master]
     types: [closed]
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch: # Manual trigger
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     # Only run on master branch pushes or when PR is merged to master
     if: github.ref == 'refs/heads/master' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'master')
 
@@ -22,8 +22,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -73,28 +73,28 @@ jobs:
             if [ -d "/var/www/EmsBeckenboden" ]; then
               sudo cp -r /var/www/EmsBeckenboden /var/www/EmsBeckenboden.backup.$(date +%Y%m%d_%H%M%S)
             fi
-            
+
             # Create target directory if it doesn't exist
             sudo mkdir -p /var/www/EmsBeckenboden
-            
+
             # Clear current website files
             sudo rm -rf /var/www/EmsBeckenboden/*
-            
+
             # Extract new website files
             cd /tmp
             sudo tar -xzf website.tar.gz -C /var/www/EmsBeckenboden/
-            
+
             # Set proper permissions
             sudo chown -R www-data:www-data /var/www/EmsBeckenboden
             sudo chmod -R 755 /var/www/EmsBeckenboden
-            
+
             # Clean up temporary files
             rm -f /tmp/website.tar.gz
-            
+
             # Optional: Restart web server (uncomment if needed)
             # sudo systemctl reload nginx
             # sudo systemctl reload apache2
-            
+
             echo "✅ Website deployed successfully to /var/www/EmsBeckenboden"
             echo "📁 Current files:"
             ls -la /var/www/EmsBeckenboden

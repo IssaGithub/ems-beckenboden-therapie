@@ -7,6 +7,7 @@ Diese Anleitung erklärt, wie Sie die Website auf GitHub Pages deployen können 
 ### Schritt 1: Repository Setup
 
 1. **Repository erstellen**:
+
    ```bash
    git init
    git add .
@@ -23,21 +24,24 @@ Diese Anleitung erklärt, wie Sie die Website auf GitHub Pages deployen können 
 ### Schritt 2: Konfiguration anpassen
 
 **Bearbeiten Sie `astro.config.mjs`**:
+
 ```javascript
 export default defineConfig({
-  site: 'https://IHR-USERNAME.github.io',
-  base: '/IHR-REPOSITORY',
+  site: "https://IHR-USERNAME.github.io",
+  base: "/IHR-REPOSITORY",
   // ... rest der Konfiguration
 });
 ```
 
 **Ersetzen Sie**:
+
 - `IHR-USERNAME` → Ihr GitHub Username
 - `IHR-REPOSITORY` → Ihr Repository Name
 
 ### Schritt 3: Automatisches Deployment
 
 Bei jedem Push auf `main` Branch wird automatisch deployed:
+
 - ✅ Dependencies werden installiert
 - ✅ Build wird erstellt
 - ✅ Auf GitHub Pages deployed
@@ -49,6 +53,7 @@ Bei jedem Push auf `main` Branch wird automatisch deployed:
 
 1. **Script konfigurieren**:
    Bearbeiten Sie `deploy-github.sh`:
+
    ```bash
    GITHUB_USERNAME="IHR-USERNAME"
    REPOSITORY_NAME="IHR-REPOSITORY"
@@ -95,18 +100,20 @@ npm run deploy:github
 ## 🔧 Konfigurationsdateien
 
 ### `astro.config.mjs` (GitHub Pages)
+
 ```javascript
 export default defineConfig({
-  site: 'https://IHR-USERNAME.github.io',
-  base: '/IHR-REPOSITORY',
+  site: "https://IHR-USERNAME.github.io",
+  base: "/IHR-REPOSITORY",
   // Für GitHub Pages Deployment
 });
 ```
 
 ### `astro.config.local.mjs` (Lokale Entwicklung)
+
 ```javascript
 export default defineConfig({
-  site: 'http://localhost:4321',
+  site: "http://localhost:4321",
   // Kein base path für lokale Entwicklung
 });
 ```
@@ -116,13 +123,15 @@ export default defineConfig({
 ### Problem: Links funktionieren nicht auf GitHub Pages
 
 **Lösung**: Überprüfen Sie die `base` Konfiguration in `astro.config.mjs`:
+
 ```javascript
 base: '/IHR-REPOSITORY-NAME',
 ```
 
 ### Problem: CSS/JS nicht geladen
 
-**Lösung**: 
+**Lösung**:
+
 1. Überprüfen Sie die `site` URL in der Konfiguration
 2. Stellen Sie sicher, dass `.nojekyll` Datei existiert
 3. Prüfen Sie die Konsole im Browser auf Fehler
@@ -134,6 +143,7 @@ base: '/IHR-REPOSITORY-NAME',
 ### Problem: Deployment schlägt fehl
 
 **Überprüfen Sie**:
+
 1. Repository Permissions (Settings → Actions → General → Workflow permissions)
 2. GitHub Pages ist aktiviert (Settings → Pages)
 3. Workflow-Dateien sind korrekt commited
@@ -141,11 +151,13 @@ base: '/IHR-REPOSITORY-NAME',
 ## 📊 Monitoring
 
 ### GitHub Actions
+
 - Gehen Sie zu: `https://github.com/IHR-USERNAME/IHR-REPOSITORY/actions`
 - Überprüfen Sie den Status der Deployments
 - Schauen Sie sich die Logs bei Fehlern an
 
 ### GitHub Pages Status
+
 - Gehen Sie zu: `https://github.com/IHR-USERNAME/IHR-REPOSITORY/settings/pages`
 - Sehen Sie den aktuellen Deployment-Status
 - Erhalten Sie die URL Ihrer Website
@@ -166,6 +178,7 @@ base: '/IHR-REPOSITORY-NAME',
 ### Repository Secrets (für GitHub Actions)
 
 Für sensitive Daten verwenden Sie Repository Secrets:
+
 - GitHub → Repository → Settings → Secrets and variables → Actions
 - Fügen Sie `GITHUB_TOKEN` hinzu falls nötig
 
@@ -174,6 +187,7 @@ Für sensitive Daten verwenden Sie Repository Secrets:
 ### Eigene Domain verwenden
 
 1. **DNS konfigurieren**:
+
    ```
    CNAME: www.ihre-domain.de → IHR-USERNAME.github.io
    ```
@@ -191,11 +205,14 @@ Für sensitive Daten verwenden Sie Repository Secrets:
 ## 📈 Performance Optimierung
 
 ### Cache-Einstellungen
+
 Die GitHub Actions Workflow-Datei enthält bereits Cache-Optimierungen:
+
 - Node.js Dependencies werden gecacht
 - Build-Artefakte werden effizient übertragen
 
 ### Build-Optimierungen
+
 ```javascript
 // In astro.config.mjs
 build: {
@@ -242,4 +259,4 @@ build: {
 
 ---
 
-**Entwickelt für die professionelle EMS Beckenboden Therapie Praxis von Annette Fneiche** 
+**Entwickelt für die professionelle EMS Beckenboden Therapie Praxis von Annette Fneiche**

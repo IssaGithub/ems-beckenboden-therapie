@@ -1,14 +1,14 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   // VPS deployment configuration
-  site: 'https://beckenbodentraining-heilbronn.de',
-  base: '', // Empty base path to ensure no subdirectory
-  
+  site: "https://beckenbodentraining-heilbronn.de",
+  base: "", // Empty base path to ensure no subdirectory
+
   vite: {
     plugins: [tailwindcss()],
     build: {
@@ -17,18 +17,18 @@ export default defineConfig({
     },
     css: {
       devSourcemap: true, // Helpful for debugging
-    }
+    },
   },
-  
+
   // Output configuration for static site generation
-  output: 'static',
-  
+  output: "static",
+
   // Optimize for production
   build: {
-    assets: 'assets', // Simple folder name to avoid confusion
-    inlineStylesheets: 'never', // CSS immer als externe Dateien
+    assets: "assets", // Simple folder name to avoid confusion
+    inlineStylesheets: "never", // CSS immer als externe Dateien
   },
-  
+
   // No trailing slash issues for VPS
-  trailingSlash: 'ignore'
+  trailingSlash: "ignore",
 });

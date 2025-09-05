@@ -67,7 +67,7 @@ npm run deploy:github
 
 ## Wichtige Hinweise
 
-1. **Asset Pfade**: 
+1. **Asset Pfade**:
    - Alle Assets werden jetzt im `/assets/` Ordner abgelegt
    - Keine `/ems-beckenboden-therapie/` Präfixe mehr in den Pfaden
 

@@ -16,6 +16,7 @@ Die Ursache war, dass die HTML-Dateien nach Assets in `/ems-beckenboden-therapie
 ### 1. Astro-Konfiguration korrigiert
 
 - **Local**: `astro.config.local.mjs` - Kein base path, konsistenter assets-Ordner
+
   ```javascript
   base: '', // Explizit kein Base Path
   build: {
@@ -42,11 +43,13 @@ Die Ursache war, dass die HTML-Dateien nach Assets in `/ems-beckenboden-therapie
 ### 3. Build & Deployment aktualisiert
 
 - **package.json**: Standard-Build verwendet jetzt VPS-Konfiguration
+
   ```json
   "build": "astro build --config astro.config.vps.mjs",
   ```
 
 - **deploy.sh**: Überprüft auf verbliebene GitHub Pages Pfade, entfernt alte Verzeichnisse
+
   ```bash
   # Stelle sicher, dass keine GitHub Pages Pfade verwendet werden...
   if grep -r "ems-beckenboden-therapie" ./dist --include="*.html" | grep -v "grep"; then
@@ -54,7 +57,7 @@ Die Ursache war, dass die HTML-Dateien nach Assets in `/ems-beckenboden-therapie
   else
       print_success "Keine GitHub Pages Pfade gefunden, build ist korrekt."
   fi
-  
+
   # Entfernt alte GitHub Pages Verzeichnisse
   if [ -d "$VPS_PATH/ems-beckenboden-therapie" ]; then
       echo "Removing old GitHub Pages directory structure..."
@@ -65,16 +68,19 @@ Die Ursache war, dass die HTML-Dateien nach Assets in `/ems-beckenboden-therapie
 ## Wie man es verwendet
 
 1. **Lokale Entwicklung**:
+
    ```bash
    npm run dev
    ```
 
 2. **Build für VPS erstellen**:
+
    ```bash
    npm run build  # oder npm run build:vps
    ```
 
 3. **Auf VPS deployen**:
+
    ```bash
    npm run deploy:vps
    ```
